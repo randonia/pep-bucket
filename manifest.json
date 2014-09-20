@@ -7,7 +7,7 @@
   "content_scripts": [
     {
       "matches": ["https://bitbucket.org/*"],
-      "js": ["src/myscript.js"],
+      "js": ["src/script.js"],
       "css": ["style/pep_style.css"],
       "run_at": "document_end"
     }
