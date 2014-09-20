@@ -1,3 +1,15 @@
+// Creates the counting div element on the document and returns
+function create_linecount_div(char_count, style_classes){
+    var new_element = document.createElement('div');
+    new_element.setAttribute('class', style_classes);
+    var new_content = document.createTextNode(char_count);
+    new_element.appendChild(new_content);
+    return new_element;
+}
+
+var LINE_ERROR = 'pep-column-count error';
+var LINE_CLEAN = 'pep-column-count clean';
+
 // Grab all the additions, deletions, and common lines separately
 additions = document.getElementsByClassName('udiff-line addition');
 deletions = document.getElementsByClassName('udiff-line deletion');
@@ -12,12 +24,8 @@ for(var i = 0; i < additions.length; ++i){
     }
     span_content = span_content.substring(1);
     var char_count = span_content.length;
-    console.log('Count is ', char_count, span_content);
-    if(char_count > 100){
-	var new_element = document.createElement('div');
-	new_element.setAttribute('class', 'pep-column-count');
-	var new_content = document.createTextNode(char_count);
-	new_element.appendChild(new_content);
-	additions[i].insertBefore(new_element, span_element);
-    }
+
+    var style = (char_count > 100)?LINE_ERROR:LINE_CLEAN;
+    var new_element = create_linecount_div(char_count, style);
+    additions[i].insertBefore(new_element, span_element);
 }

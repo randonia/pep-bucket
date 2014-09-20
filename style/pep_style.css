@@ -1,7 +1,5 @@
 .pep-column-count{
-    background-color: #E34740;
     border-radius: 10px;
-    color: white;
     font-family: "Bitstream Vera Sans Mono","DejaVu Sans Mono", "Monaco", "Courier", "monospace";
     font-size: 11px;
     line-height: 14px;
@@ -9,4 +7,14 @@
     padding-right: 5px;
     position: absolute;
     right: 1px;
+}
+
+.error{
+    background-color: #E34740;
+    color: white;
+}
+
+.clean{
+    background-color: rgba(125, 125, 125, 0.3);
+    color: rgba(0, 0, 0, 0.3);
 }
