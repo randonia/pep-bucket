@@ -1,0 +1,16 @@
+{
+  "name": "PEP-Bucket",
+  "version": "0.1",
+  "permissions": [
+    "https://bitbucket.org/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://bitbucket.org/*"],
+      "js": ["src/myscript.js"],
+      "css": ["style/pep_style.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "manifest_version": 2
+}
