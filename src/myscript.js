@@ -11,9 +11,9 @@ var LINE_ERROR = 'pep-column-count error';
 var LINE_CLEAN = 'pep-column-count clean';
 
 // Grab all the additions, deletions, and common lines separately
-additions = document.getElementsByClassName('udiff-line addition');
-deletions = document.getElementsByClassName('udiff-line deletion');
-commons = document.getElementsByClassName('udiff-line common');
+var additions = document.getElementsByClassName('udiff-line addition');
+var deletions = document.getElementsByClassName('udiff-line deletion');
+var commons = document.getElementsByClassName('udiff-line common');
 
 for(var i = 0; i < additions.length; ++i){
     var gutter = additions[i].getElementsByClassName('gutter')[0];
