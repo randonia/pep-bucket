@@ -13,19 +13,17 @@ function create_linecount_div(char_count, style_classes){
 }
 
 function process_udiff(element, all_elements, line_starter){
-    for(var i = 0; i < all_elements.length; ++i){
-        var gutter = all_elements[i].getElementsByClassName('gutter')[0];
-        var span_element = all_elements[i].getElementsByClassName('source')[0];
-        var span_content = span_element.innerText;
-        if(span_content[0] != line_starter){
-            console.log("Something is wrong");
-        }
-        span_content = span_content.substring(1);
-        var char_count = span_content.length;
-        var style = (char_count > 100)?LINE_ERROR:LINE_CLEAN;
-        var new_element = create_linecount_div(char_count, style);
-        all_elements[i].insertBefore(new_element, span_element);
+    var gutter = element.getElementsByClassName('gutter')[0];
+    var span_element = element.getElementsByClassName('source')[0];
+    var span_content = get_text(span_element);
+    if(span_content[0] != line_starter){
+        console.log("Something is wrong");
     }
+    span_content = span_content.substring(1);
+    var char_count = span_content.length;
+    var style = (char_count > 100)?LINE_ERROR:LINE_CLEAN;
+    var new_element = create_linecount_div(char_count, style);
+    element.insertBefore(new_element, span_element);
 }
 
 function process_diff_container(element, index, array){
