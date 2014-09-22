@@ -1,8 +1,11 @@
-var startTime = new Date();
+window.setTimeout(checkDiff, 500);
+
 var LINE_ERROR = 'pep-column-count error';
 var LINE_CLEAN = 'pep-column-count clean';
 
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
+
+chrome.webRequest.onCompleted.addEventListener(function(details){console.log(details)});
 
 function get_text(element){
     return element.innerHTML.replace(/(<([^>]+)>)/ig, "");
@@ -51,11 +54,18 @@ function process_diff_container(element, index, array){
         context);
 }
 
+function checkDiff(){
 
-var all_diff_containers = document.getElementsByClassName('diff-container');
-all_diff_containers.forEach(process_diff_container);
-var endTime = new Date();
-var footer_element = document.getElementById('footer').children[0];
-var time_elapsed_span = document.createElement('span');
-time_elapsed_span.innerHTML = "PEP8ucket took <em>" + (endTime - startTime) + "ms</em> to finish";
-footer_element.insertBefore(time_elapsed_span, footer_element.children[0]);
+    var startTime = new Date();
+    var all_diff_containers = document.getElementsByClassName('diff-container');
+    if(all_diff_containers.length){
+        all_diff_containers.forEach(process_diff_container);
+        var endTime = new Date();
+        var footer_element = document.getElementById('footer').children[0];
+        var time_elapsed_span = document.createElement('span');
+        time_elapsed_span.innerHTML = "PEP8ucket took <em>" + (endTime - startTime) + "ms</em> to finish";
+        footer_element.insertBefore(time_elapsed_span, footer_element.children[0]);
+    } else {
+        window.setTimeout(checkDiff, 500);
+    }
+}
