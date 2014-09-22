@@ -5,8 +5,6 @@ var LINE_CLEAN = 'pep-column-count clean';
 
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
 
-chrome.webRequest.onCompleted.addEventListener(function(details){console.log(details)});
-
 function get_text(element){
     return element.innerHTML.replace(/(<([^>]+)>)/ig, "");
 }
