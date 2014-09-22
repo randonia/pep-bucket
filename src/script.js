@@ -1,7 +1,12 @@
+var startTime = new Date();
 var LINE_ERROR = 'pep-column-count error';
 var LINE_CLEAN = 'pep-column-count clean';
 
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
+
+function get_text(element){
+    return element.innerHTML.replace(/(<([^>]+)>)/ig, "");
+}
 
 // Creates the counting div element on the document and returns
 function create_linecount_div(char_count, style_classes){
@@ -27,6 +32,11 @@ function process_udiff(element, all_elements, line_starter){
 }
 
 function process_diff_container(element, index, array){
+    var filename = get_text(element.getElementsByClassName("filename")[0]);
+    // Don't parse non-python files
+    if(filename.indexOf('.py') == -1){
+        return;
+    }
     // Grab all the additions, deletions, and common lines separately
     var additions = element.getElementsByClassName('udiff-line addition');
     var deletions = element.getElementsByClassName('udiff-line deletion');
@@ -35,7 +45,6 @@ function process_diff_container(element, index, array){
     var context = {
     'line_starter': '+'
     };
-
     additions.forEach(function(element, index, array){
             process_udiff(element, array, this['line_starter']);
         },
@@ -45,3 +54,8 @@ function process_diff_container(element, index, array){
 
 var all_diff_containers = document.getElementsByClassName('diff-container');
 all_diff_containers.forEach(process_diff_container);
+var endTime = new Date();
+var footer_element = document.getElementById('footer').children[0];
+var time_elapsed_span = document.createElement('span');
+time_elapsed_span.innerHTML = "PEP8ucket took <em>" + (endTime - startTime) + "ms</em> to finish";
+footer_element.insertBefore(time_elapsed_span, footer_element.children[0]);
