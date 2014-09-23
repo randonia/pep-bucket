@@ -74,7 +74,7 @@ function checkDiff(){
         var time_elapsed_span = document.createElement('span');
         time_elapsed_span.innerHTML = "PEP8ucket took <em>" + (endTime - startTime) + "ms</em> to finish";
         footer_element.insertBefore(time_elapsed_span, footer_element.children[0]);
-    } else if(pr_content_element.classList.contains("has-mask")){
+    } else {
         window.setTimeout(checkDiff, 500);
     }
 }
