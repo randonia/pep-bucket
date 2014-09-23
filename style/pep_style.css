@@ -3,6 +3,7 @@
     font-family: "Bitstream Vera Sans Mono","DejaVu Sans Mono", "Monaco", "Courier", "monospace";
     font-size: 11px;
     line-height: 14px;
+    margin-top: 2px;
     padding-left: 5px;
     padding-right: 5px;
     position: absolute;
@@ -10,11 +11,28 @@
 }
 
 .error{
-    background-color: #E34740;
+    background-color: rgb(227,71,64);
     color: white;
 }
 
 .clean{
     background-color: rgba(125, 125, 125, 0.3);
     color: rgba(0, 0, 0, 0.3);
+}
+
+.gutter-error{
+    background: rgba(227,71,64, 0.7);
+    border-radius: 6px;
+    left: -21px;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: absolute;
+}
+
+.outline-error{
+    outline: solid 1px rgba(227,71,64, 0.7);
+    height: 16px;
+    margin-top: 1px;
+    position: absolute;
+    width: 100%;
 }

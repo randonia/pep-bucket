@@ -5,6 +5,7 @@ var LINE_CLEAN = 'pep-column-count clean';
 
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
 
+// Drammatically faster than innerText
 function get_text(element){
     return element.innerHTML.replace(/(<([^>]+)>)/ig, "").replace(/&gt;/g, '>').replace(/&lt;/g, "<");
 }
@@ -30,6 +31,15 @@ function process_udiff(element, all_elements, line_starter){
     var style = (char_count > 100)?LINE_ERROR:LINE_CLEAN;
     var new_element = create_linecount_div(char_count, style);
     element.insertBefore(new_element, span_element);
+    if (style == LINE_ERROR){
+        var span_exclaim = document.createElement('span');
+        span_exclaim.setAttribute('class', 'gutter-error');
+        span_exclaim.innerHTML = '&#33;&#33;&#33;';
+        element.insertBefore(span_exclaim, element.children[0]);
+        var div_outline = document.createElement('div');
+        div_outline.setAttribute('class', 'outline-error');
+        element.insertBefore(div_outline, element.getElementsByClassName('source')[0]);
+    }
 }
 
 function process_diff_container(element, index, array){
