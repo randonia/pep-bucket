@@ -6,7 +6,7 @@ var LINE_CLEAN = 'pep-column-count clean';
 HTMLCollection.prototype.forEach = Array.prototype.forEach;
 
 function get_text(element){
-    return element.innerHTML.replace(/(<([^>]+)>)/ig, "");
+    return element.innerHTML.replace(/(<([^>]+)>)/ig, "").replace(/&gt;/g, '>').replace(/&lt;/g, "<");
 }
 
 // Creates the counting div element on the document and returns
