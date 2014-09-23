@@ -1,4 +1,4 @@
-window.setTimeout(checkDiff, 500);
+window.setTimeout(checkDiff, 1500);
 
 var LINE_ERROR = 'pep-column-count error';
 var LINE_CLEAN = 'pep-column-count clean';
@@ -56,6 +56,7 @@ function checkDiff(){
 
     var startTime = new Date();
     var all_diff_containers = document.getElementsByClassName('diff-container');
+    var pr_content_element = document.getElementById('pr-tab-content');
     if(all_diff_containers.length){
         all_diff_containers.forEach(process_diff_container);
         var endTime = new Date();
@@ -63,7 +64,7 @@ function checkDiff(){
         var time_elapsed_span = document.createElement('span');
         time_elapsed_span.innerHTML = "PEP8ucket took <em>" + (endTime - startTime) + "ms</em> to finish";
         footer_element.insertBefore(time_elapsed_span, footer_element.children[0]);
-    } else {
+    } else if(pr_content_element.classList.contains("has-mask")){
         window.setTimeout(checkDiff, 500);
     }
 }
