@@ -45,7 +45,7 @@ function process_udiff(element, all_elements, line_starter){
 function process_diff_container(element, index, array){
     var filename = get_text(element.getElementsByClassName("filename")[0]);
     // Don't parse non-python files
-    if(filename.indexOf('.py') == -1){
+    if(filename.indexOf('.py') == -1 && filename.indexOf('.java') == -1){
         return;
     }
     // Grab all the additions, deletions, and common lines separately
