@@ -38,6 +38,10 @@ function process_udiff(element, all_elements, line_starter){
         element.insertBefore(span_exclaim, element.children[0]);
         var div_outline = document.createElement('div');
         div_outline.setAttribute('class', 'outline-error');
+        // Detect "TODO"
+        if(span_content.match(/TODO/)){
+            div_outline.setAttribute('class', div_outline.getAttribute('class') + ' todo')
+        }
         element.insertBefore(div_outline, element.getElementsByClassName('source')[0]);
     }
 }
