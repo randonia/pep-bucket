@@ -31,16 +31,18 @@ function process_udiff(element, all_elements, line_starter){
     var style = (char_count > 100)?LINE_ERROR:LINE_CLEAN;
     var new_element = create_linecount_div(char_count, style);
     element.insertBefore(new_element, span_element);
-    if (style == LINE_ERROR){
+    // Detect "TODO"
+    var todo_matched = span_content.match(/TODO/) != undefined;
+
+    if (style == LINE_ERROR || todo_matched){
         var span_exclaim = document.createElement('span');
         span_exclaim.setAttribute('class', 'gutter-error');
         span_exclaim.innerHTML = '&#33;&#33;&#33;';
         element.insertBefore(span_exclaim, element.children[0]);
         var div_outline = document.createElement('div');
         div_outline.setAttribute('class', 'outline-error');
-        // Detect "TODO"
-        if(span_content.match(/TODO/)){
-            div_outline.setAttribute('class', div_outline.getAttribute('class') + ' todo')
+        if(todo_matched){
+            div_outline.setAttribute('class', div_outline.getAttribute('class') + ' todo');
         }
         element.insertBefore(div_outline, element.getElementsByClassName('source')[0]);
     }
