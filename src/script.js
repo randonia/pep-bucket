@@ -46,6 +46,11 @@ function process_udiff(element, all_elements, line_starter){
         }
         element.insertBefore(div_outline, element.getElementsByClassName('source')[0]);
     }
+
+    // Highlight all \t characters
+    var tab_replacement = '<span class="tab">\t</span>';
+    span_element.innerHTML = span_element.innerHTML.replace(/\t/g, tab_replacement);
+
 }
 
 function process_diff_container(element, index, array){
