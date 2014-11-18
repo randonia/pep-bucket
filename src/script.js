@@ -31,21 +31,20 @@ function process_udiff(element, all_elements, line_starter){
     var style = (char_count > 100)?LINE_ERROR:LINE_CLEAN;
     var new_element = create_linecount_div(char_count, style);
     element.insertBefore(new_element, span_element);
-    // Detect "TODO"
-    var todo_matched = span_content.match(/TODO/) != undefined;
 
-    if (style == LINE_ERROR || todo_matched){
+    if (style == LINE_ERROR){
         var span_exclaim = document.createElement('span');
         span_exclaim.setAttribute('class', 'gutter-error');
         span_exclaim.innerHTML = '&#33;&#33;&#33;';
         element.insertBefore(span_exclaim, element.children[0]);
         var div_outline = document.createElement('div');
         div_outline.setAttribute('class', 'outline-error');
-        if(todo_matched){
-            div_outline.setAttribute('class', div_outline.getAttribute('class') + ' todo');
-        }
         element.insertBefore(div_outline, element.getElementsByClassName('source')[0]);
     }
+
+    // Detect "TODO"
+    var todo_replacement = '<span class="todo">$1</span>';
+    span_element.innerHTML = span_element.innerHTML.replace(/(TODO)/ig, todo_replacement);
 
     // Highlight all \t characters
     var tab_replacement = '<span class="tab">\t</span>';

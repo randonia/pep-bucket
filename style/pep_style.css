@@ -41,9 +41,23 @@
     width: 100%;
 }
 
+@-webkit-keyframes glow-todo{
+    from{
+        box-shadow: 0px 0px 1px 1px rgba(255, 102, 10, 1.0);
+    }
+    to{
+        box-shadow: 0px 0px 6px 1px rgba(255, 102, 10, 1.0);
+    }
+}
+
 .todo{
-    box-shadow: 0px 0px 1px 3px rgba(227,71,64, 0.7);
+    background-color: rgba(255,235,0,0.8);
     z-index: 1;
+    -webkit-animation-duration: 0.8s;
+    -webkit-animation-name: glow-todo;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
 }
 
 @-webkit-keyframes glow-tab{
