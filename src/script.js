@@ -50,6 +50,9 @@ function process_udiff(element, all_elements, line_starter){
     var tab_replacement = '<span class="tab">\t</span>';
     span_element.innerHTML = span_element.innerHTML.replace(/\t/g, tab_replacement);
 
+    // Highlight all trailing whitespace
+    var whitespace_replacement = '<span class="whitespace">$1</span>'
+    span_element.innerHTML = span_element.innerHTML.replace(/([ ]+)$/gm, whitespace_replacement);
 }
 
 function process_diff_container(element, index, array){
